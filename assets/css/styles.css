@@ -1,0 +1,74 @@
+.animation-area{
+    background-image: linear-gradient(to top, #f77062 0%, #fe5196 100%);    
+    height: 100vh;
+}
+
+.box-area{
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    width: 100%; 
+    height: 100%;
+    overflow: hidden;
+}
+
+.box-area li{
+    position: absolute;
+    display: block; 
+    list-style: none; 
+    width: 25px;
+    height: 25px;
+    border: 5px solid orange;
+    bottom: -150px;
+    animation : animate 10s linear infinite;
+}
+
+.box-area li:nth-child(1){
+    left: 86%; 
+    width: 120px; 
+    height: 120px;
+    animation-delay: 0s; 
+}
+
+.box-area li:nth-child(2){
+    left: 12%; 
+    width: 90px; 
+    height: 90px;
+    animation-delay: 2s; 
+    animation-duration: 10s; 
+}
+
+.box-area li:nth-child(3){
+    left: 35%; 
+    width: 80px; 
+    height: 80px;
+    animation-delay: 1.2s; 
+    animation-duration: 20s; 
+}
+
+.box-area li:nth-child(4){
+    left: 75%; 
+    width: 120px; 
+    height: 120px;
+    animation-delay: 4s; 
+    animation-duration: 6s; 
+}
+
+.box-area li:nth-child(5){
+    left: 50%; 
+    width: 140px; 
+    height: 140px;
+    animation-delay: 2s; 
+    animation-duration: 12s; 
+}
+@keyframes animate{
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.5;
+    }
+    100%{
+        transform: translateY(-800px) rotate(360deg);
+        opacity: 0;
+        border-radius: 25px;
+    }
+}
