@@ -1,99 +1,44 @@
-.animation-area{
-    background-image: linear-gradient(to left, #30cfd0 0%, #330867 100%);    height: 100vh;
+html, body {
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(to left, #30cfd0 0%, #330867 100%);    
 }
 
-.box-area{
-    position: absolute;
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%;
-    overflow: hidden;
+.container{
+    background: none;
+}
+.jumbotron{
+    background: none;
+    color: white;
+    text-align: center;
 }
 
-.box-area li{
-    position: absolute;
-    display: block; 
-    list-style: none; 
-    width: 25px;
-    height: 25px;
-    background : rgba(255,265,0,0.5); 
-    border: 5px solid pink;
-    bottom: -150px;
-    animation : animate 10s linear infinite;
+
+
+.choice{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width : 80%;
+    margin-bottom: 10%;
+    border: 2px solid white;
+    color: white;
+    text-align: center;
+    border-radius: 15px;
+    background: rgba(0,0,0,0.2);
 }
 
-.box-area li:nth-child(1){
-    left: 86%; 
-    width: 120px; 
-    height: 120px;
-    animation-delay: 0s; 
+.red{
+    border-color: orangered;
 }
 
-.box-area li:nth-child(2){
-    left: 12%; 
-    width: 90px; 
-    height: 90px;
-    animation-delay: 2s; 
-    animation-duration: 10s; 
+.green{
+    border-color: greenyellow;
 }
 
-.box-area li:nth-child(3){
-    left: 35%; 
-    width: 80px; 
-    height: 80px;
-    animation-delay: 1.2s; 
-    animation-duration: 20s; 
+.violet{
+    border-color: violet;
 }
 
-.box-area li:nth-child(4){
-    left: 75%; 
-    width: 120px; 
-    height: 120px;
-    animation-delay: 4s; 
-    animation-duration: 6s; 
-}
-
-.box-area li:nth-child(5){
-    left: 50%; 
-    width: 140px; 
-    height: 140px;
-    animation-delay: 2s; 
-    animation-duration: 12s; 
-}
-
-.box-area li:nth-child(6){
-    left: 50%; 
-    width: 90px; 
-    height: 90px;
-    animation-delay: 5s; 
-    animation-duration: 10s; 
-}
-
-.box-area li:nth-child(7){
-    left: 50%; 
-    width: 100px; 
-    height: 100px;
-    animation-delay: 10s; 
-    animation-duration: 6s; 
-}
-
-.box-area li:nth-child(8){
-    left: 50%; 
-    width: 40px; 
-    height: 40px;
-    animation-delay: 5s; 
-    animation-duration: 7s; 
-}
-@keyframes animate{
-    0%{
-        transform: translateY(0) rotate(0deg);
-        opacity: 0.2;
-        border-radius: 25px;
-    }
-    100%{
-        transform: translateY(-800px) rotate(360deg);
-        opacity: 0;
-        border-radius: 50px;
-    }
+.blue{
+    border-color: turquoise;
 }
