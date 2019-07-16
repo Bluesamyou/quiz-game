@@ -3,17 +3,48 @@ var gameState = {
   questionIndex: 0,
   timeUp: false,
   correct: 0,
-  incorrect: 0
+  incorrect: 0,
+  timeleft: 10,
+
 };
 
 color = ["red", "green", "violet", "blue"]
 
+var timer;
+
+
+
+
+
 $("document").ready(function () {
   var checkAnswer = function (choice) {
     if (gameState.timeUp) {
-      ++gameState.incorrect
-        ++questionIndex
+      Swal.fire({
+        // Fires enemy defeated message 
+        background: 'rgba(0,0,0,0.9)',
+        html: `<h1 style="color:red;">Time's Up</h1> 
+                <h5 style="color:white;"> The correct answer is <span style="color: greenyellow;">${gameState.questionArray[gameState.questionIndex].correct_answer}</span></h5>`,
+        confirmButtonText: "Continue",
+        allowOutsideClick: false,
+        backdrop: 'rgba(180,255,180,0.2)',
+        preConfirm: () => {
+          ++gameState.incorrect
+            ++gameState.questionIndex
+          if (gameState.questionIndex < gameState.questionArray.length) {
+            ++gameState.incorrect
+            gameState.timeUp = false; 
+            gameState.timeleft = 10; 
+            ++gameState.questionIndex
+            renderQuestion()
+          } else {
+            gameSummary()
+          }
+
+        }
+      })
+
     } else {
+      clearTimeout(timer)
       if (choice == gameState.questionArray[gameState.questionIndex].correct_answer) {
         Swal.fire({
           // Fires enemy defeated message 
@@ -24,11 +55,13 @@ $("document").ready(function () {
           backdrop: 'rgba(180,255,180,0.2)',
           preConfirm: () => {
             ++gameState.correct
-              ++gameState.questionIndex
+            ++gameState.questionIndex
+            gameState.timeUp = false; 
+            gameState.timeleft = 10; 
             if (gameState.questionIndex < gameState.questionArray.length) {
               renderQuestion()
             } else {
-              alert("We are done")
+              gameSummary()
             }
           }
         })
@@ -43,11 +76,13 @@ $("document").ready(function () {
           backdrop: 'rgba(180,255,180,0.2)',
           preConfirm: () => {
             ++gameState.incorrect
-              ++gameState.questionIndex
+            ++gameState.questionIndex
+            gameState.timeUp = false; 
+            gameState.timeleft = 10; 
             if (gameState.questionIndex < gameState.questionArray.length) {
               renderQuestion()
             } else {
-              alert("We are done")
+              gameSummary()
             }
 
           }
@@ -72,12 +107,36 @@ $("document").ready(function () {
       $('.choices').append(choiceDiv)
 
     });
+
+    timerFunction();
+
     $('.choice').on("click", function () {
       var selection = $(this).text()
       checkAnswer(selection)
     })
 
   }
+
+  var gameSummary = function(){
+    
+  }
+  var timerFunction = function () {
+    timer =
+      setTimeout(function () {
+        if (gameState.timeleft === 0) {
+          gameState.timeUp = true
+          clearTimeout(timer)
+          checkAnswer()
+        } else {
+          --gameState.timeleft
+          $('.timer').text(`00:0${gameState.timeleft}`)
+          clearTimeout(timer)
+          return timerFunction()
+        }
+      }, 1000)
+
+  }
+
 
 
   $.ajax({
