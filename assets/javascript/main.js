@@ -12,10 +12,6 @@ color = ["red", "green", "violet", "blue"]
 
 var timer;
 
-
-
-
-
 $("document").ready(function () {
   var checkAnswer = function (choice) {
     if (gameState.timeUp) {
@@ -118,7 +114,22 @@ $("document").ready(function () {
   }
 
   var gameSummary = function(){
-    
+    setTimeout(function(){
+      Swal.fire({
+        background: 'rgba(0,0,0,0.9)',
+        html: `<h1 style="color:green;">Here's how you went</h1> 
+                <p style="color:white;">Correct : ${gameState.correct}<p>
+                <p style="color:white;">Incorrect : ${gameState.incorrect}<p>`,
+        confirmButtonText: "Continue",
+        allowOutsideClick: false,
+        backdrop: 'rgba(180,255,180,0.2)',
+        preConfirm: () => {
+          location.reload()
+  
+        }
+      })
+    },1000)
+
   }
   var timerFunction = function () {
     timer =
@@ -147,7 +158,7 @@ $("document").ready(function () {
       gameState.questionArray = result.results;
       renderQuestion()
     })
-
+    
 
 
 });
